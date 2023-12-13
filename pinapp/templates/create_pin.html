@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Pin</title>
+</head>
+<body>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="image_id">Image ID:</label>
+        <input type="text" name="image_id">
+        <label for="title">Title:</label>
+        <input type="text" name="title">
+        <label for="description">Description:</label>
+        <textarea name="description"></textarea>
+        <label for="image">Image:</label>
+        <input type="file" name="image" accept="image/*" required>
+        <label for="upload_date">Upload Date:</label>
+        <input type="date" name="upload_date">
+        <label for="slug">Slug:</label>
+        <input type="text" name="slug">
+
+        <!-- Displaying categories for selection -->
+        <label for="category">Category:</label>
+        <select name="category">
+            {% for category in c %}
+                <option value="{{ category.id }}">{{ category.title }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Upload</button>
+    </form>
+</body>
+</html>
